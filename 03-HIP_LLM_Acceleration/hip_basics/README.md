@@ -126,8 +126,8 @@ int main() {
 
 ```bash
 cd /ROCM_APP
-git clone https://github.com/chengl-amd/hip_design.git
-cd ./hip_design/hip_basics/backend
+git pull https://github.com/amd/GenAI-contest.git
+cd 03-HIP_LLM_Acceleration/hip_basics/backend
 hipcc --offload-arch=gfx90a demo_gemv_v0.cpp -o gemv_v0
 ./gemv_v0
 ```

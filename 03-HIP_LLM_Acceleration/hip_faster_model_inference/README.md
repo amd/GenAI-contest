@@ -28,14 +28,10 @@ pip install transformers
 
 ```bash
 cd /ROCM_APP
-git clone https://github.com/chengl-amd/hip_design.git
-cd ./hip_design/hip_faster_model_inference/eed_amd
+git pull https://github.com/amd/GenAI-contest.git
+cd 03-HIP_LLM_Acceleration/hip_faster_model_inference/eed
 python setup.py install
 ```
-
-The successful installation looks like this:
-
-![image1](./img/image1.png)
 
 ### 4. Replace model and configuration files in Transformers
 
@@ -56,5 +52,5 @@ The successful running looks like this:
 
 ![image2](./img/image2.png)
 
-You are welcome to report or submit any bugs and optimizations to cheng.ling@amd.com.  
+
 
