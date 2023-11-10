@@ -7,7 +7,7 @@
 <tr>
 <td align="center"><a href="./01-LLM_Fine-tuning/">LLM fine-tuning</a></td>
 <td>
-This guide will walk you through how to finetune LLMs on AMD GPUs with ROCm technologies, including a base finetuning and a fast finetuning with bitsandbytes quantization technology. 
+This guide will walk you through the steps of fine-tuning LLMs on AMD GPUs with ROCm technologies, including a base finetuning and a fast finetuning with bitsandbytes quantization technology. 
 </td>
 </tr>
 
@@ -19,7 +19,7 @@ This guide will walk you through how to finetune LLMs on AMD GPUs with ROCm tech
 <tr>
 <td align="center"><a href="./03-HIP_LLM_Acceleration/">LLM inference acceleration using HIP</a></td>
 <td>
-This guide will walk through how to write a HIP application to explore AMD GPU compute capability and integrate it to python application as a PyTorch HIP extension for improving the inference performance of Huggingface transformer models.
+This guide will walk you through the steps of writing a HIP application to explore AMD GPU compute capability and integrate it to python application as a PyTorch HIP extension for improving the inference performance of Huggingface transformer models.
 </td>
 </tr>
 
