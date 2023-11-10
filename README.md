@@ -13,7 +13,9 @@ This guide will walk you through the steps of fine-tuning LLMs on AMD GPUs with 
 
 <tr>
 <td align="center"><a href="./02-SD_Fine-tuning/">SD fine-tuning</a></td>
-<td></td>
+<td>
+
+</td>
 </tr>
 
 <tr>
