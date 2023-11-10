@@ -28,7 +28,7 @@ In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance you
 Update pip package and install necessary libraries:
 
 ```bash
-pip install –upgrade pip
+pip install --upgrade pip
 pip install transformers
 pip install datasets
 pip install accelerate
@@ -98,7 +98,7 @@ export CUDA_VISIBLE_DEVICE=0
 export MODEL_ID="facebook/opt-1.3b"
 export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model'
 export STEPS=20
-python llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=#STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH
+python llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH
 ```
 
 The training process looks like this:
