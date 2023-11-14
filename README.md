@@ -14,7 +14,7 @@ This guide will walk you through the steps of fine-tuning LLMs on AMD GPUs with 
 <tr>
 <td align="center"><a href="./02-SD_Fine-tuning/">SD fine-tuning</a></td>
 <td>
-
+This step-by-step tutorial demonstrates how to use ROCm to finetune a Stable Diffusion model with a custom dataset and deploy the model on AMD MI210 GPU. 
 </td>
 </tr>
 
