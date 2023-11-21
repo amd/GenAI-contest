@@ -1,4 +1,4 @@
-## Quick Start Guide: HIP C++ design, Python binding and transformer model integration - MI210
+## Quick Start Guide: HIP C++ design, Python binding and transformer model integration
 
 This is a quick start guide walking through how to write a HIP application to explore AMD GPU compute capability and integrate it to python application as a PyTorch HIP extension for improving the computation performance of Huggingface transformer models. The guide consists 6 parts:
 
@@ -19,7 +19,7 @@ sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=
 ```
 
 In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you need to install PyTorch through command:
-pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
 
 ### 2. Design a C++ function with HIP kernel to calculate GEMV
 
@@ -127,7 +127,7 @@ int main() {
 
 ```bash
 cd /ROCM_APP
-git pull https://github.com/amd/GenAI-contest.git
+git clone https://github.com/amd/GenAI-contest.git
 cd 03-HIP_LLM_Acceleration/hip_basics/backend
 hipcc --offload-arch=gfx90a demo_gemv_v0.cpp -o gemv_v0
 ./gemv_v0
@@ -284,8 +284,8 @@ setup(
 #### Install the extension
 
 ```bash
-cd hip_design
-python setup.py install
+cd ..
+sudo python3 setup.py install
 ```
 
 Successful installation will generate a Python demo package. To check the package's information:
