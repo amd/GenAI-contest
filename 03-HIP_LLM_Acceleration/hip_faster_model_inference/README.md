@@ -40,7 +40,7 @@ sudo python3 setup.py install
 cd ..
 cp ./models/bloom/* {your transformers path}/models/bloom/
 cp ./models/opt/* {your transformers path}/models/opt/
-cp ./models/llama/* {your transformers path}models/llama/
+cp ./models/llama/* {your transformers path}/models/llama/
 ```
 
 ### 5. Run testing script
