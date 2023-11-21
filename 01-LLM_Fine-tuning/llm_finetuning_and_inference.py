@@ -105,25 +105,29 @@ def prepare_for_finetuning(args):
 
 def inference(args):
 
+    model_id = args.model_id
+    dataset = load_dataset(default_dataset_name, split="train")
+    dataset = dataset.map(lambda example: {'text': example['prompt'] + example['output']})
+    index = int(input("Pick up a text from the training dataset (Enter a number between 0 - 3300):"))
+    print("The text you selected is: \n", dataset['text'][index])
+    print("\nThe original output of the text is: \n", dataset['output'][index])
+    print("\nThe generated output from the finetuned model is:\n")
+
     device = torch.device("cuda:0")
-        
     model = AutoModelForCausalLM.from_pretrained(args.finetune_model_save_path)
     model.eval()
     model.to(device)
-
     tokenizer = AutoTokenizer.from_pretrained(args.model_id, trust_remote_code=True, padding_side="left")
     tokenizer.pad_token = tokenizer.eos_token
 
-    inputs = args.prompt
+    inputs = dataset['text'][index]
     input_ids = tokenizer(inputs, return_tensors="pt").input_ids.to(device)
 
     output_ids = model.generate(input_ids, max_new_tokens=args.max_new_tokens)
 
     torch.cuda.synchronize()
 
-    outputs = tokenizer.batch_decode(output_ids)
-
-    print(outputs)
+    print(tokenizer.decode(output_ids[0], skip_special_tokens=True))
     
     
 def finetuning(trainer):

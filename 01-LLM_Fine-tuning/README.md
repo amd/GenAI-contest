@@ -10,7 +10,6 @@ Finetuning can make the original LLMs better for specific applications, letting 
 1.	Prepare the training dataset
 2.	Train a new finetuned model
 3.	Deploy and use your finetuned model
-
 This quick start guide will walk you through how to finetune LLMs on AMD GPUs with ROCm technologies, including a base finetuning and a fast finetuning with bitsandbytes quantization technology. 
 
 ### Section 1. Quick setup
@@ -22,8 +21,7 @@ If you are working on a PC or workstation with AMD Radeon GPU cards, you can lau
 sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --ipc=host -it -v $HOME/ROCM_APP:/ROCM_APP -d rocm/pytorch:rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1
 ```
 
-In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through command:
-pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through command: pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
 
 #### Library preparation
 
@@ -35,6 +33,7 @@ pip install transformers
 pip install datasets
 pip install accelerate
 pip install huggingface
+pip install huggingface-hub
 ```
 
 To leverage the recent SFTTrainer: 
@@ -58,10 +57,14 @@ cd bitsandbytes-rocm
 make hip
 ```
 
+The successful finish looks like this:
+
+![BNB make](./img/bnb_make.png)
+
 To install it as a Python package:
 
 ```bash
-python setup.py install
+sudo python3 setup.py install
 ```
 
 The successful finish looks like this:
@@ -74,6 +77,8 @@ Note 'bitsandbytes + PEFT' is not a requirement if you just want to perform a ba
 Make sure to sign up and sign in Hugging face by [CLI](https://huggingface.co/docs/huggingface_hub/quick-start#login ) to use pretrained models. 
 
 ```bash
+PATH=$PATH:{python3 base path}/bin
+{python3 base path} is obtained by running: python3 -m site --user-base
 huggingface-cli login
 ```
 
@@ -84,9 +89,9 @@ In this guide, we will finetune the [facebook/opt-1.3b](https://huggingface.co/f
 #### Clone demo script 
 
 ```bash
-cd /ROCM_APP
-git pull https://github.com/amd/GenAI-contest.git
-cd 01-LLM_Fine-tuning
+cd $HOME/ROCM_APP
+git clone https://github.com/chengl-amd/llm_finetuning.git
+cd llm_finetuning
 ```
 
 #### Finetune the model (no quantization)
@@ -96,7 +101,7 @@ export CUDA_VISIBLE_DEVICE=0
 export MODEL_ID="facebook/opt-1.3b"
 export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model'
 export STEPS=20
-python llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH
+python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH
 ```
 
 The training process looks like this:
@@ -110,7 +115,7 @@ export CUDA_VISIBLE_DEVICE=0
 export MODEL_ID="facebook/opt-1.3b"
 export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model-lora'
 export STEPS=20
-python llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --use-bnb
+python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --use-bnb
 ```
 
 The training process looks like this:
@@ -130,7 +135,7 @@ export CUDA_VISIBLE_DEVICE=0
 export MODEL_ID="facebook/opt-1.3b"
 export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model-lora'
 export MAX_NEW_TOKEN=100
-python llm_finetuning_and_inference.py --inference --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --model-id=$MODEL_ID --max-new-token=$MAX_NEW_TOKEN
+python3 llm_finetuning_and_inference.py --inference --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --model-id=$MODEL_ID --max-new-token=$MAX_NEW_TOKEN
 ```
 
 The comparisons between the original output and the generated output from the finetuned model:
