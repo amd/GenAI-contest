@@ -90,8 +90,8 @@ In this guide, we will finetune the [facebook/opt-1.3b](https://huggingface.co/f
 
 ```bash
 cd $HOME/ROCM_APP
-git clone https://github.com/chengl-amd/llm_finetuning.git
-cd llm_finetuning
+git clone https://github.com/amd/GenAI-contest.git
+cd 01-LLM_Fine-tuning
 ```
 
 #### Finetune the model (no quantization)

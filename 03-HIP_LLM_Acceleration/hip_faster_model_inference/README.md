@@ -16,7 +16,7 @@ sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=
 ```
 
 In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through command:
-pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
 
 ### 2. Install the basic packages
 
@@ -29,24 +29,24 @@ pip install transformers
 
 ```bash
 cd /ROCM_APP
-git pull https://github.com/amd/GenAI-contest.git
+git clone https://github.com/amd/GenAI-contest.git
 cd 03-HIP_LLM_Acceleration/hip_faster_model_inference/eed
-python setup.py install
+sudo python3 setup.py install
 ```
 
 ### 4. Replace model and configuration files in Transformers
 
 ```bash
 cd ..
-cp ./models/bloom/* /opt/conda/envs/py_3.10/lib/python3.10/site-packages/transformers/models/bloom/
-cp ./models/opt/* /opt/conda/envs/py_3.10/lib/python3.10/site-packages/transformers/models/opt/
-cp ./models/llama/* /opt/conda/envs/py_3.10/lib/python3.10/site-packages/transformers/models/llama/
+cp ./models/bloom/* {your transformers path}/models/bloom/
+cp ./models/opt/* {your transformers path}/models/opt/
+cp ./models/llama/* {your transformers path}models/llama/
 ```
 
 ### 5. Run testing script
 
 ```bash
-python run_llm_inference.py
+python3 run_llm_inference.py
 ```
 
 The successful running looks like this:
