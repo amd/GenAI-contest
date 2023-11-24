@@ -38,6 +38,7 @@ pip install datasets
 pip install accelerate
 pip install huggingface
 pip install huggingface-hub
+pip install scipy
 ```
 
 To leverage the recent SFTTrainer: 
