@@ -16,7 +16,11 @@ sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=
 ```
 
 In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through command:
-sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+
+```bash
+sudo -i
+pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7
+```
 
 ### 2. Install the basic packages
 
@@ -31,7 +35,7 @@ pip install transformers
 cd /ROCM_APP
 git clone https://github.com/amd/GenAI-contest.git
 cd 03-HIP_LLM_Acceleration/hip_faster_model_inference/eed
-sudo python3 setup.py install
+python3 setup.py install
 ```
 
 ### 4. Replace model and configuration files in Transformers

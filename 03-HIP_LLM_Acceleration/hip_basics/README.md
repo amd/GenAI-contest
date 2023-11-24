@@ -19,7 +19,11 @@ sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=
 ```
 
 In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you need to install PyTorch through command:
-sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+
+```bash
+sudo -i
+sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7
+```
 
 ### 2. Design a C++ function with HIP kernel to calculate GEMV
 
@@ -285,7 +289,7 @@ setup(
 
 ```bash
 cd ..
-sudo python3 setup.py install
+python3 setup.py install
 ```
 
 Successful installation will generate a Python demo package. To check the package's information:
