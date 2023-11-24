@@ -22,7 +22,8 @@ In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, yo
 
 ```bash
 sudo -i
-sudo pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7
+pip install pip --upgrade
+sudo pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7
 ```
 
 ### 2. Design a C++ function with HIP kernel to calculate GEMV

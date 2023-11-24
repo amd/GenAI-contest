@@ -25,14 +25,14 @@ In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, yo
 
 ```bash
 sudo -i
-pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
+pip install --upgrade pip
+pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
 ```
 #### Library preparation
 
 Update pip package and install necessary libraries:
 
 ```bash
-pip install --upgrade pip
 pip install transformers
 pip install datasets
 pip install accelerate
