@@ -14,7 +14,7 @@ read n
 if [ $n -eq 1 ] || [ $n -eq 0 ];
 then
 echo "[INFO] baseline finetuning"
-python inference_text_to_image.py \
+python3 inference_text_to_image.py \
     --pretrained_model_name_or_path=$MODEL_NAME \
     --finetuned_model_name_or_path="sd-pokemon-model" \
     --fine_tuning_methods=1 \
@@ -24,7 +24,7 @@ fi
 if [ $n -eq 2 ] || [ $n -eq 0 ];
 then
 echo "[INFO] min-SNR weighning"
-python inference_text_to_image.py \
+python3 inference_text_to_image.py \
     --pretrained_model_name_or_path=$MODEL_NAME \
     --finetuned_model_name_or_path="sd-pokemon-model_minsnr" \
     --fine_tuning_methods=2 \
