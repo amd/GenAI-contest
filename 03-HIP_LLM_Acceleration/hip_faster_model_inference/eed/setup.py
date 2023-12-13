@@ -1,3 +1,7 @@
+# Copyright © 2023 Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
+
+
 import os
 from setuptools import setup
 from torch.utils.cpp_extension import BuildExtension, CppExtension

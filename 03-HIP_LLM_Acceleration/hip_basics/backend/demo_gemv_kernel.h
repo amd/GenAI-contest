@@ -1,3 +1,6 @@
+// Copyright © 2023 Advanced Micro Devices, Inc. All rights reserved.
+// SPDX-License-Identifier: MIT
+
 #include <hip/hip_runtime.h>
 #include <hip/hip_fp16.h>
 

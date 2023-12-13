@@ -1,6 +1,6 @@
-// #include <ATen/ATen.h>
-// #include <ATen/hip/HIPContext.h>
-// #include <torch/extension.h>
+// Copyright © 2023 Advanced Micro Devices, Inc. All rights reserved.
+// SPDX-License-Identifier: MIT
+
 #include <hip/hip_runtime.h>
 #include <math.h>
 #include <stdio.h>
