@@ -1,3 +1,6 @@
+# Copyright © 2023 Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
+
 import torch
 import sys
 import argparse
