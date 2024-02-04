@@ -36,7 +36,7 @@ The following steps introduce a simple multi-threaded design and implementation 
 
 #### Prepare C++ source file 
 
-The thread parallelsim philosophy in this case employs 128 threads to compute 128 rows of the input matrix and the vector seperately and correspondingly. The whole application is composed of a C++ function and a HIP GPU kernel function. The C++ function takes matrix, vector and GEMV result as the function arguments, it configures a single thread block with 128 threads, then it launches the HIP GPU kernel with kernel function parameters and the thread block dimension definition. You can either have the two function definitions in a single source file, or you can seperate them into different source files. The kernel file need to be included into the C++ function file if the definition is in another file, i.e., #include "demo_gemv_kernel.h", in this case.
+The thread parallelism philosophy in this case employs 128 threads to compute 128 rows of the input matrix and the vector separately and correspondingly. The whole application is composed of a C++ function and a HIP GPU kernel function. The C++ function takes matrix, vector and GEMV result as the function arguments, it configures a single thread block with 128 threads, then it launches the HIP GPU kernel with kernel function parameters and the thread block dimension definition. You can either have the two function definitions in a single source file, or you can seperate them into different source files. The kernel file need to be included into the C++ function file if the definition is in another file, i.e., #include "demo_gemv_kernel.h", in this case.
 
 ```bash
 #include <stdio.h>
