@@ -10,7 +10,6 @@ Finetuning can make the original LLMs better for specific applications, letting 
 1.	Prepare the training dataset
 2.	Train a new finetuned model
 3.	Deploy and use your finetuned model
-This quick start guide will walk you through how to finetune LLMs on AMD GPUs with ROCm technologies, including a base finetuning and a fast finetuning with bitsandbytes quantization technology. 
 
 ### Section 1. Quick setup
 
