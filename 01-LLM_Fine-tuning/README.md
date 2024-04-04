@@ -21,7 +21,7 @@ If you are working on a PC or workstation with AMD Radeon GPU cards, you can lau
 sudo docker run --device=/dev/kfd --device=/dev/dri --group-add video --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --ipc=host -it -v $HOME/ROCM_APP:/ROCM_APP -d rocm/pytorch:rocm5.7_ubuntu22.04_py3.10_pytorch_2.0.1
 ```
 
-In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through command:
+In case you are using [AMD Accelerator Cloud](https://aac.amd.com/) instance, you may need to install PyTorch through commands:
 
 ```bash
 sudo -i
@@ -53,31 +53,6 @@ To leverage PEFT (Parameter-Efficient Fine-Tuning) for efficiently adapting pre-
 pip install peft
 ```
 
-To leverage bitsandbytes for model quantization:
-
-```bash
-git clone https://github.com/Lzy17/bitsandbytes-rocm
-cd bitsandbytes-rocm
-
-make hip
-```
-
-The successful finish looks like this:
-
-![BNB make](./img/bnb_make.png)
-
-To install it as a Python package:
-
-```bash
-python3 setup.py install
-```
-
-The successful finish looks like this:
-
-![BNB install](./img/bnb_build.png)
-
-Note 'bitsandbytes + PEFT' is not a requirement if you just want to perform a base finetuning process. 
-
 #### Hugging Face login
 Make sure to sign up and sign in Hugging face by [CLI](https://huggingface.co/docs/huggingface_hub/quick-start#login ) to use pretrained models. 
 
@@ -89,60 +64,35 @@ huggingface-cli login
 
 ### Section 2. Finetune LLM model to custom dataset
 
-In this guide, we will finetune the [facebook/opt-1.3b](https://huggingface.co/facebook/opt-1.3b) to [nisaar/Articles_Constitution_3300_Instruction_Set dataset](https://huggingface.co/datasets/nisaar/Articles_Constitution_3300_Instruction_Set). 
+In this guide, we will finetune the [facebook/opt-1.3b](https://huggingface.co/facebook/opt-1.3b) with [mlabonne/guanaco-llama2-1k dataset](https://huggingface.co/datasets/mlabonne/guanaco-llama2-1k).
 
 #### Clone demo script 
 
 ```bash
 cd $HOME/ROCM_APP
 git clone https://github.com/amd/GenAI-contest.git
-cd 01-LLM_Fine-tuning
+cd GenAI-contest/01-LLM_Fine-tuning
 ```
 
-#### Finetune the model (no quantization)
+#### Finetune the model
 
 ```bash
-export CUDA_VISIBLE_DEVICE=0
 export MODEL_ID="facebook/opt-1.3b"
-export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model'
-export STEPS=20
-python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH
+CUDA_VISIBLE_DEVICES=0 python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID
 ```
 
 The training process looks like this:
 
 ![base training](./img/training-nq.png)
 
-#### Finetune LLM model with bitsandbytes and PEFT
+### Section 3. Test the finetuned model
+
+To test the finetuned model:
 
 ```bash
-export CUDA_VISIBLE_DEVICE=0
-export MODEL_ID="facebook/opt-1.3b"
-export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model-lora'
-export STEPS=20
-python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID --training-steps=$STEPS --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --use-bnb
+CUDA_VISIBLE_DEVICES=0 python3 llm_finetuning_and_inference.py --model-id=$MODEL_ID --inference
 ```
 
-The training process looks like this:
-
-![training](./img/training-q.png)
-
-### Section 3. Testing your finetuned model
-
-After finetuning the model, you can see the finetuned model saved in $FINETUNE_MODEL_SAVE_PATH
-
-![finetuned model](./img/finetuned.png)
-
-To test the finetuned model, you can run:
-
-```bash
-export CUDA_VISIBLE_DEVICE=0
-export MODEL_ID="facebook/opt-1.3b"
-export FINETUNE_MODEL_SAVE_PATH='opt-nisaar-3300-model-lora'
-export MAX_NEW_TOKEN=100
-python3 llm_finetuning_and_inference.py --inference --finetune-model-save-path=$FINETUNE_MODEL_SAVE_PATH --model-id=$MODEL_ID --max-new-token=$MAX_NEW_TOKEN
-```
-
-The comparisons between the original output and the generated output from the finetuned model:
+The comparisons between the base model and the enhanced model:
 
 ![result](./img/result.png)
