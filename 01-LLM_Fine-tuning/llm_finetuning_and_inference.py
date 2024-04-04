@@ -52,17 +52,13 @@ def prepare_for_finetuning(args):
         
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
+        device_map = "auto"
         quantization_config=bnb_config,
         trust_remote_code=True
     )
-    model.config.use_cache = False
+
     tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
-
-    #trainer arguments
-    if args.training_steps < 1:
-        print("Bad number of training steps")
-        exit(1)
     
     training_arguments = TrainingArguments(
         output_dir="./results",
