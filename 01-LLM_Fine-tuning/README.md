@@ -29,8 +29,6 @@ pip install --pre torch torchvision torchaudio --index-url https://download.pyto
 ```
 #### Install dependencies
 
-Update pip package and install necessary libraries:
-
 ```bash
 pip install transformers
 pip install datasets
