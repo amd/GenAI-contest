@@ -28,7 +28,7 @@ sudo -i
 pip install --upgrade pip
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm5.7 
 ```
-#### Library preparation
+#### Install dependencies
 
 Update pip package and install necessary libraries:
 
