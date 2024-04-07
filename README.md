@@ -7,7 +7,7 @@
 <tr>
 <td align="center"><a href="./01-LLM_Fine-tuning/">LLM fine-tuning</a></td>
 <td>
-This guide will walk you through the steps of fine-tuning LLMs on AMD GPUs with ROCm technologies, including a base finetuning and a fast finetuning with bitsandbytes quantization technology. 
+This guide will walk you through the steps of fine-tuning LLMs on AMD GPUs with ROCm technologies, including peft lora technology. 
 </td>
 </tr>
 
