@@ -50,6 +50,17 @@ To leverage PEFT (Parameter-Efficient Fine-Tuning) for efficiently adapting pre-
 pip install peft
 ```
 
+To install bitsandbytes for ROCm GPUs:
+
+```bash
+git clone https://github.com/Lzy17/bitsandbytes-rocm
+cd bitsandbytes-rocm
+
+make hip
+
+sudo python3 setup.py install
+```
+
 #### Hugging Face login
 Make sure to sign up and sign in Hugging face by [CLI](https://huggingface.co/docs/huggingface_hub/quick-start#login ) to use pretrained models. 
 
